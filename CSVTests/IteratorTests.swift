@@ -35,7 +35,7 @@ class IteratorTests: XCTestCase {
             let sequence = FileSequence(file: url, encoding: encoding)
             
             let message = String(format: "Failed to correctly read with encoding \(name) (%x)", encoding.rawValue)
-            _ = XCTAssertEqualSequences(sequence, string.characters, message, file: file, line: line)
+            _ = XCTAssertEqualSequences(sequence, string, message, file: file, line: line)
         }
     }
     
@@ -47,7 +47,7 @@ class IteratorTests: XCTestCase {
         
         let sequence = FileSequence(file: csvFile, encoding: .utf8)
         
-        _ = XCTAssertEqualSequences(sequence, contents.characters)
+        _ = XCTAssertEqualSequences(sequence, contents)
     }
     
     func testEncodingsForComplexString() {
@@ -70,7 +70,7 @@ class IteratorTests: XCTestCase {
         let sequence = FileSequence(file: file, encoding: .utf8)
         guard let contents = XCTAssertNoThrows(try String(contentsOf: file, encoding: .utf8)) else { return }
         
-        _ = XCTAssertEqualSequences(sequence, contents.characters)
+        _ = XCTAssertEqualSequences(sequence, contents)
     }
     
 }

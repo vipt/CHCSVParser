@@ -11,7 +11,7 @@ import CSV
 
 class ScenarioTest: XCTestCase {
     
-    override static func defaultTestSuite() -> XCTestSuite {
+    override static var defaultTestSuite: XCTestSuite {
         let suite = XCTestSuite(name: "Scenarios")
         addTests(name: "Simple", scenarios: simpleScenarios, to: suite)
         addTests(name: "Quoted", scenarios: quotedScenarios, to: suite)

@@ -41,14 +41,14 @@ public final class Parser {
         public var trimWhitespace = false
         public var recognizeLeadingEqualSign = false
         
-        public var onBeginDocument: (Void) -> Disposition = { _ in return .continue }
-        public var onEndDocument: (CSV.Progress, Parser.Error?) -> Void = { _ in }
+        public var onBeginDocument: () -> Disposition = {  return .continue }
+        public var onEndDocument: (CSV.Progress, Parser.Error?) -> Void = { _,_  in }
         
         public var onBeginRecord: (CSV.Progress) -> Disposition = { _ in return .continue }
         public var onEndRecord: (CSV.Progress) -> Disposition = { _ in return .continue }
         
-        public var onReadField: (String, CSV.Progress) -> Disposition = { _ in return .continue }
-        public var onReadComment: (String, CSV.Progress) -> Disposition = { _ in return .continue }
+        public var onReadField: (String, CSV.Progress) -> Disposition = { _,_  in return .continue }
+        public var onReadComment: (String, CSV.Progress) -> Disposition = { _,_  in return .continue }
         
         public init(delimiter d: Character = ",", recordTerminators: Set<Character> = Character.Newlines, recognizeBackslashAsEscape: Bool = false, sanitizeFields: Bool = false, recognizeComments: Bool = false, trimWhitespace: Bool = false, recognizeLeadingEqualSign: Bool = false) {
             self.delimiter = d
@@ -72,7 +72,7 @@ public final class Parser {
     }
     
     public convenience init(string: String, configuration: Configuration = Configuration()) {
-        self.init(characters: string.characters, configuration: configuration)
+        self.init(characters: string, configuration: configuration)
     }
     
     public func parse() throws {

@@ -10,7 +10,7 @@ import Foundation
 
 public extension Parser {
     
-    public struct Error: Swift.Error, Equatable {
+    struct Error: Swift.Error, Equatable {
         
         public enum Kind: Equatable {
             case illegalRecordTerminator
@@ -59,7 +59,7 @@ public extension Parser {
 
 public extension Writer {
 
-    public struct Error: Swift.Error, Equatable {
+    struct Error: Swift.Error, Equatable {
         
         public enum Kind {
             case invalidOutputStream

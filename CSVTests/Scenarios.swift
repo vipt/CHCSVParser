@@ -37,7 +37,7 @@ struct Scenario {
             _ = parse(csv, doc.records, configuration, file: file, line: line)
         } else {
             // we are expecting the csv to FAIL parsing
-            let parser = CSV.Parser(characters: csv.characters, configuration: configuration)
+            let parser = CSV.Parser(characters: csv, configuration: configuration)
             _ = XCTAssertThrows(try parser.parse(), file: file, line: line)
         }
     }

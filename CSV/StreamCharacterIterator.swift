@@ -27,7 +27,7 @@ public final class StreamCharacterIterator: IteratorProtocol, ByteReporting {
     private var pendingByteBuffer = NSMutableData()
     private var characters = Array<Character>()
     
-    open fileprivate(set) var bytesRead: UInt
+    public fileprivate(set) var bytesRead: UInt
     
     public init(inputStream: InputStream, encoding: String.Encoding = String.Encoding.macOSRoman, pageSize: Int = 4096, loadThreshold: Int = 1024) {
         self.bytesRead = 0
@@ -51,7 +51,7 @@ public final class StreamCharacterIterator: IteratorProtocol, ByteReporting {
         if input.streamStatus != .closed { input.close() }
     }
     
-    open func next() -> Element? {
+    public func next() -> Element? {
         readMoreIfNecessary()
         if characters.isEmpty { return nil }
         return characters.removeFirst()
@@ -91,7 +91,7 @@ public final class StreamCharacterIterator: IteratorProtocol, ByteReporting {
                 pendingByteBuffer.replaceBytes(in: NSRange(location: 0, length: length), withBytes: [], length: 0)
                 
                 let swiftString = string as String
-                characters.append(contentsOf: swiftString.characters)
+                characters.append(contentsOf: swiftString)
                 break
             } else {
                 length -= 1

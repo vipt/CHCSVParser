@@ -135,7 +135,7 @@ private var temporaryFolderLogging = Dictionary<String, Bool>()
 extension XCTestCase {
     
     internal func resource(_ name: String, type: String = "csv", file: StaticString = #file, line: UInt = #line) -> URL? {
-        let bundle = Bundle(for: type(of: self))
+        let bundle = Bundle(for: Swift.type(of: self))
         if let url = bundle.url(forResource: name, withExtension: type) {
             return url
         }

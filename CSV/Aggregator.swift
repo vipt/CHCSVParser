@@ -20,7 +20,7 @@ extension String {
         config.onReadComment = aggregator.readComment
         config.onReadField = aggregator.readField
         
-        let parser = Parser(characters: self.characters, configuration: config)
+        let parser = Parser(characters: self, configuration: config)
         try parser.parse()
         
         return Document(aggregator.records)
@@ -57,7 +57,7 @@ private class Aggregator {
         if let fields = currentRecord {
             if keys == nil && useFirstRecordAsKeys {
                 // TODO: what if the currentRecord is all comments
-                keys = currentRecord?.flatMap { $0.value }
+                keys = currentRecord?.compactMap { $0.value }
             } else {
                 if useFirstRecordAsKeys {
                     guard keys?.count == fields.count else {
